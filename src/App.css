@@ -1,0 +1,12 @@
+.hero-section {
+  background-image: url("./assets/hotelHero.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 70vh;
+  width: 100%;
+}
+
+.hero-title {
+  color: white;
+  text-shadow: 5px 0px 2px rgb(0, 0, 0);
+}
