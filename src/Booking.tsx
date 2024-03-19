@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Navbar from "./Components/Navbar";
 import deluxeSuite from "./assets/deluxeSuite.png";
 import juniorSuite from "./assets/juniorSuite.png";
@@ -11,6 +11,7 @@ import breakfast from "./assets/breakfast.jpg";
 import casino from "./assets/casino.jpg";
 import hairSalon from "./assets/hairSalon.jpg";
 import nailSalon from "./assets/nailSalon.jpg";
+
 export default function Booking() {
   const rooms = [
     { id: 1, name: "Single Room", img: singleRoom, price: 1500 },
@@ -24,13 +25,14 @@ export default function Booking() {
     { id: 1, accom: "Free Breakfast", img: breakfast },
     { id: 2, accom: "Free Hair Salon", img: hairSalon },
     { id: 3, accom: "Free Massage", img: bodyMassage },
-    { id: 4, accom: "Free Casino Entrance", img: casino },
+    { id: 4, accom: "Free 300 Casino Tokens", img: casino },
     { id: 4, accom: "Free Nail Salon", img: nailSalon },
   ];
   const [roomPicked, setRoom] = useState({
     img: singleRoom,
     price: 1500,
   });
+  const [dateSet, setdateSet] = useState();
 
   return (
     <div>
@@ -72,6 +74,14 @@ export default function Booking() {
             ))}
           </div>
         </p>
+      </div>
+
+      <div>
+        <input
+          type="date"
+          value={dateSet}
+          onChange={(event) => setdateSet(event.target.value)}
+        />
       </div>
     </div>
   );
