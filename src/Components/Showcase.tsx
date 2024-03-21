@@ -1,4 +1,3 @@
-import React from "react";
 import deluxeRoom from "../assets/deluxeRoom.png";
 import dining from "../assets/dining.png";
 import swimming from "../assets/swimming.jpg";

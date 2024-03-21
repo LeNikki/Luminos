@@ -1,4 +1,3 @@
-import React from "react";
 import hotelLogo from "../assets/hotelLogo.png";
 export default function Footer() {
   return (

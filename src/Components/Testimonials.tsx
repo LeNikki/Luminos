@@ -1,4 +1,3 @@
-import React from "react";
 import client1 from "../assets/client1.png";
 export default function Testimonials() {
   const testimonials = [

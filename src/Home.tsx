@@ -43,7 +43,7 @@ export default function Home() {
       });
     }
   };
-  const bookNow = (event: React.FormEvent<HTMLFormElement>) => {
+  const bookNow = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
     if (!errors.arrivalError && !errors.departureError) {

@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import Navbar from "./Components/Navbar";
 import deluxeSuite from "./assets/deluxeSuite.png";
@@ -34,7 +33,7 @@ export default function Booking() {
     img: singleRoom,
     price: 1500,
   });
-  const [dateSet, setdateSet] = useState();
+
   const location = useLocation();
   const { arrivalDate, departureDate } = location.state;
   console.log(arrivalDate);
@@ -140,14 +139,6 @@ export default function Booking() {
             ))}
           </div>
         </p>
-      </div>
-
-      <div>
-        <input
-          type="date"
-          value={dateSet}
-          onChange={(event) => setdateSet(event.target.value)}
-        />
       </div>
     </div>
   );

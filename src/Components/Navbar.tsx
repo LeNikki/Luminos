@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import hotelLogo from "../assets/hotelLogo.png";
 export default function Navbar() {
