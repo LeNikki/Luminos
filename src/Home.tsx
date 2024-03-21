@@ -1,11 +1,78 @@
-import React from "react";
 import Navbar from "./Components/Navbar";
 import Showcase from "./Components/Showcase";
-import hotelHero from "./assets/hotelHero.png";
-import HeroSection from "./Components/HeroSection";
 import Testimonials from "./Components/Testimonials";
 import Footer from "./Components/Footer";
+import { useState, ChangeEvent } from "react";
+import { useNavigate } from "react-router-dom";
+
+interface DateInputErrors {
+  arrivalError: string;
+  departureError: string;
+}
 export default function Home() {
+  const [arrivalDate, setArrivalDate] = useState<string>("");
+  const [departureDate, setDepartureDate] = useState<string>("");
+  const [errors, setErrors] = useState<DateInputErrors>({
+    arrivalError: "",
+    departureError: "",
+  });
+  const navigate = useNavigate();
+  const validateDates = (arrival: string, departure: string) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const arrivalDate = new Date(arrival);
+    const departureDate = new Date(departure);
+
+    const arrivalError = arrival === "" ? "Arrival date is required" : "";
+    const departureError = departure === "" ? "Departure date is required" : "";
+
+    if (arrivalDate < today) {
+      setErrors({
+        arrivalError: "Arrival date cannot be earlier than the current date",
+        departureError: "",
+      });
+    } else if (arrivalDate > departureDate) {
+      setErrors({
+        arrivalError: "Arrival date cannot be later than departure date",
+        departureError: "",
+      });
+    } else {
+      setErrors({
+        arrivalError: arrivalError,
+        departureError: departureError,
+      });
+    }
+  };
+  const bookNow = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!errors.arrivalError && !errors.departureError) {
+      if (arrivalDate != "" || departureDate != "") {
+        alert(
+          "Arrival Date: " +
+            typeof arrivalDate +
+            "\n Departure Date: " +
+            departureDate
+        );
+        navigate("/booking", { state: { arrivalDate, departureDate } });
+      } else {
+        alert("Please enter a valid date");
+      }
+    } else {
+      alert("Booking Failed. Please provide appropriate dates.");
+    }
+  };
+
+  const handleArrivalChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setArrivalDate(value);
+    validateDates(value, departureDate);
+  };
+  const handleDepartureChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setDepartureDate(value);
+    validateDates(arrivalDate, value);
+  };
   return (
     <div>
       <Navbar />
@@ -17,30 +84,58 @@ export default function Home() {
           <p className="text-center text-white">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequ
           </p>
-          <div className="w-full flex justify-center items-center text-white mt-10">
-            <section className="w-1/2 flex flex-row justify-between items-center">
-              <section>
-                <label htmlFor="arrival">Arrival Date: </label>
-                <input
-                  type="date"
-                  id="arrival"
-                  className="text-slate-600 p-1 rounded-lg"
-                  placeholder="Arrival Dat"
-                />
+          <div className="w-full flex flex-row justify-center items-center mt-10">
+            <div className="w-3/4 p-5 bg-slate-100/75 flex justify-center items-center ">
+              <section className=" flex flex-row justify-between items-center">
+                <section className="flex flex-row items-center mr-10">
+                  <label htmlFor="arrival">Arrival Date: </label>
+                  <input
+                    type="date"
+                    id="arrival"
+                    value={arrivalDate}
+                    onChange={handleArrivalChange}
+                    className="text-slate-600 p-1"
+                    placeholder="Arrival Date"
+                  />
+                </section>
+                <section className="flex flex-row items-center mr-10">
+                  <label htmlFor="departure">Departure Date: </label>
+                  <input
+                    type="date"
+                    id="departure"
+                    value={departureDate}
+                    onChange={handleDepartureChange}
+                    className="text-slate-600 p-1"
+                    placeholder="Departure Date"
+                  />
+                </section>
               </section>
-              <section>
-                <label htmlFor="departure">Departure Date: </label>
-                <input
-                  type="date"
-                  id="departure"
-                  className="text-slate-600 p-1 rounded-lg"
-                  placeholder="Departure Date"
-                />
-              </section>
-              <button className="text-black hover:before:bg-redborder-yellow-600 relative rounded-lg p-3 w-44 overflow-hidden border border-yellow-600 bg-white px-3 text-yellow-600 shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-yellow-600 before:transition-all before:duration-500 hover:text-white hover:shadow-yellow-600 hover:before:left-0 hover:before:w-full">
-                <span className="relative z-10">Book Now !</span>
+
+              <button
+                onClick={bookNow}
+                className=" ml-5 h-12 text-black hover:before:bg-redborder-yellow-600 relative w-44 overflow-hidden border border-yellow-600 bg-white text-yellow-600 shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:w-0 before:bg-yellow-600 before:transition-all before:duration-500 hover:text-white hover:shadow-yellow-600 hover:before:left-0 hover:before:w-full"
+              >
+                <span className="relative z-10">Book Now</span>
               </button>
-            </section>
+            </div>
+          </div>
+          <div className="w-full flex flex-col justify-center items-center">
+            {errors.departureError ? (
+              <div className="text-white mt-2 bg-red-600/75 p-2 rounded-md">
+                <i className="fa-solid fa-circle-exclamation"></i>{" "}
+                {errors.departureError}{" "}
+              </div>
+            ) : (
+              ""
+            )}
+            {errors.arrivalError ? (
+              <div className="text-white mt-2 bg-red-600/75 p-2 rounded-md">
+                <i className="fa-solid fa-circle-exclamation"></i>
+                {errors.arrivalError}{" "}
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>

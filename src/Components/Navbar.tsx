@@ -15,9 +15,6 @@ export default function Navbar() {
         <NavLink to="/about" className="hover:font-bold text-yellow-600">
           About
         </NavLink>
-        <NavLink to="/booking" className="hover:font-bold text-yellow-600">
-          Booking
-        </NavLink>
       </nav>
     </div>
   );
