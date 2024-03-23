@@ -4,7 +4,6 @@ import Home from "./Home";
 import About from "./About";
 import Booking from "./Booking";
 function App() {
-
   return (
     <div>
       <BrowserRouter>
