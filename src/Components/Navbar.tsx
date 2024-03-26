@@ -7,7 +7,7 @@ export default function Navbar() {
         <img src={hotelLogo} width="32" className="mr-5" />
         <h1 className="font-bold text-yellow-600">Luminos Hotel</h1>
       </section>
-      <nav className="flex w-1/4 justify-between ">
+      <nav className="flex ml-3 w-1/2 md:ml-0 md:w-1/4 justify-between ">
         <NavLink to="/" className="hover:font-bold text-yellow-600">
           Home
         </NavLink>

@@ -24,9 +24,9 @@ export default function Testimonials() {
     },
   ];
   return (
-    <div className="p-24">
+    <div className="p-3 pt-10 md:p-24">
       <h1 className="font-bold text-3xl text-center">What our Clients say</h1>
-      <div className="grid grid-cols-3 mt-24">
+      <div className="grid grid-cols-1 md:grid-cols-3 mt-10 md:mt-24">
         {testimonials.map((client) => {
           return (
             <section

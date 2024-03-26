@@ -1,7 +1,7 @@
 import hotelLogo from "../assets/hotelLogo.png";
 export default function Footer() {
   return (
-    <div className="w-full bg-yellow-600 h-52 flex flex-row justify-between items-center">
+    <div className="w-full h-auto bg-yellow-600 h-52 flex flex-col md:flex-row md:justify-between items-center">
       <div className=" flex justify-center p-10">
         <section className="flex flex-row w-52 justify-around">
           <img src={hotelLogo} alt="hotelLogo" width="32" />
@@ -20,7 +20,7 @@ export default function Footer() {
         <li className="hover:text-white hover:font-bold">Careers</li>
         <li className="hover:text-white hover:font-bold">Careers</li>
       </ul>
-      <div className="flex flex-row justify-between w-1/4 p-20">
+      <div className="flex flex-row justify-between w-full md:w-1/4 p-20">
         <i className="fa-brands fa-instagram"></i>
         <i className="fa-brands fa-facebook"></i>
         <i className="fa-brands fa-x-twitter"></i>
