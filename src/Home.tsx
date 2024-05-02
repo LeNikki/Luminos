@@ -74,10 +74,10 @@ export default function Home() {
     validateDates(arrivalDate, value);
   };
   return (
-    <div>
+    <div className="hero-section h-screen">
       <Navbar />
-      <div className="hero-section">
-        <div className="hero-content">
+      <div className="h-screen">
+        <div className="hero-content ">
           <h1 className="hero-title font-bold  text-center text-4xl flex justify-center items-center pt-14 md:pt-80">
             Welcome To Luminos Hotel
           </h1>
@@ -85,10 +85,12 @@ export default function Home() {
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequ
           </p>
           <div className="w-full flex flex-col md:flex-row justify-center items-center mt-10">
-            <div className="w-3/4 p-2 md:p-5  flex-col md:flex-row bg-slate-100/75 flex justify-center items-center ">
+            <div className="w-3/4 p-2 md:p-5  flex-col md:flex-row   flex justify-center items-center ">
               <section className="  flex flex-col md:flex-row md:justify-between items-center">
                 <section className="flex flex-col md:flex-row items-center mr-0 first:md:mr-10">
-                  <label htmlFor="arrival">Arrival Date: </label>
+                  <label htmlFor="arrival" className="text-white mr-2">
+                    Arrival Date:{" "}
+                  </label>
                   <input
                     type="date"
                     id="arrival"
@@ -99,7 +101,9 @@ export default function Home() {
                   />
                 </section>
                 <section className="flex flex-col md:flex-row items-center mr-0 md:mr-10">
-                  <label htmlFor="departure">Departure Date: </label>
+                  <label htmlFor="departure" className="text-white mr-2">
+                    Departure Date:{" "}
+                  </label>
                   <input
                     type="date"
                     id="departure"
@@ -113,7 +117,7 @@ export default function Home() {
 
               <button
                 onClick={bookNow}
-                className=" mt-10 md:mt-0 ml-0 md:ml-5 h-10 text-black hover:before:bg-redborder-yellow-600 relative w-44 overflow-hidden border border-yellow-600 bg-white text-yellow-600 shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:w-0 before:bg-yellow-600 before:transition-all before:duration-500 hover:text-white hover:shadow-yellow-600 hover:before:left-0 hover:before:w-full"
+                className=" mt-10 md:mt-0 ml-0 md:ml-5 h-10  hover:before:bg-redborder-yellow-600 relative w-44 overflow-hidden border border-yellow-600 bg-white text-yellow-600 shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:w-0 before:bg-yellow-600 before:transition-all before:duration-500 hover:text-white hover:shadow-yellow-600 hover:before:left-0 hover:before:w-full"
               >
                 <span className="relative z-10">Book Now</span>
               </button>
