@@ -1,5 +1,5 @@
 import * as yup from "yup";
-
+import { User } from "./users";
 export const schema = yup.object().shape({
   username: yup.string().required("Username is required"),
   phone: yup.number().required("Phone number is required").positive(),
@@ -15,15 +15,15 @@ export const schema = yup.object().shape({
     .matches(/[0-9]/, "Password must contain at least one number"),
 });
 
-export const isValidEmail = (email) => {
+export const isValidEmail = (email: string) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 };
-export const isInteger = (phone) => {
-  return /^\d+$/.test(phone);
+export const isInteger = (phone: number) => {
+  return /^\d+$/.test(phone.toString());
 };
-export const checkInputs = (newUser) => {
-  if (newUser.userName == "") {
+export const checkInputs = (newUser: User) => {
+  if (newUser.username == "") {
     throw "Error: Please add username";
   }
   if (!isValidEmail(newUser.email)) {

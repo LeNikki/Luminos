@@ -5,9 +5,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { fetchUsersData, createUser } from "./api/users";
 import { schema } from "./api/validation";
 import { useForm } from "react-hook-form";
-
+import { User } from "./api/users";
+type Timeout = ReturnType<typeof setTimeout>;
 export const RegisterForm = () => {
-  const [userDatabase, setUserDatabase] = useState([]);
+  const [userDatabase, setUserDatabase] = useState<User[]>([]);
   const [warning, setWarning] = useState("");
 
   useEffect(() => {
@@ -35,7 +36,7 @@ export const RegisterForm = () => {
   };
 
   useEffect(() => {
-    let timeoutId;
+    let timeoutId: Timeout | undefined;
     if (warning) {
       timeoutId = setTimeout(() => {
         setWarning("");
@@ -44,24 +45,15 @@ export const RegisterForm = () => {
     return () => clearTimeout(timeoutId);
   }, [warning]);
 
-  const submitForm = (data) => {
-    try {
-      const userExists = checkExistingUser();
-      console.log(userExists);
-      if (userExists) {
-        setWarning("User with this email already exists");
-      } else {
-        try {
-          console.log("User with this email does not exist");
-          createUser(data);
-          setWarning("Submitted Succcessfully");
-        } catch (err) {
-          setWarning(err);
-        }
-      }
-    } catch (err) {
-      console.log("This is the error:", err);
-      setWarning(err);
+  const submitForm = (data: User) => {
+    const userExists = checkExistingUser();
+    console.log(userExists);
+    if (userExists) {
+      setWarning("User with this email already exists");
+    } else {
+      console.log("User with this email does not exist");
+      createUser(data);
+      setWarning("Submitted Succcessfully");
     }
   };
 

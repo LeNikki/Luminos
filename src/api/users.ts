@@ -1,6 +1,11 @@
 import axios from "axios";
 
-
+export interface User {
+  username: string;
+  phone: number;
+  email: string;
+  password: string;
+}
 export const fetchUsersData = async () => {
   try {
     const response = await axios.get("http://localhost:5000/users");
@@ -11,7 +16,7 @@ export const fetchUsersData = async () => {
   }
 };
 
-export const createUser = async (userData) => {
+export const createUser = async (userData: User) => {
   try {
     await axios.post("http://localhost:5000/users", userData);
   } catch (error) {
@@ -19,4 +24,3 @@ export const createUser = async (userData) => {
     throw error;
   }
 };
-

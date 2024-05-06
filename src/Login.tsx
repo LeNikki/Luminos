@@ -1,6 +1,7 @@
 import signin from "./assets/signin.png";
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
+
 import axios from "axios";
 
 function SignUp() {
@@ -10,11 +11,11 @@ function SignUp() {
   });
   const [userExistError, setUserExistError] = useState(false);
 
-  const handleInput = (e) => {
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
-  const loginUser = async (e) => {
+  const loginUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(credentials);
     try {
@@ -31,10 +32,8 @@ function SignUp() {
     }
   };
 
-
-
   useEffect(() => {
-    let timer;
+    let timer: number;
     if (userExistError) {
       timer = setTimeout(() => {
         setUserExistError(false);

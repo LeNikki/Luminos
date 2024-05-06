@@ -2,14 +2,12 @@ import Navbar from "./Components/Navbar";
 import { Room, bookedRooms } from "./Components/BookedRooms";
 import { rooms } from "./RoomsAvailable";
 import { useState, useEffect } from "react";
-import Checkout from "./Components/Checkout";
 
 const Billing = () => {
   const [reservedRooms, setReservedRooms] = useState<Room[]>(bookedRooms);
   const [edit, setEdit] = useState(false);
   const [checkedrooms, setCheckedrooms] = useState<Room[]>([]);
   const [totalBill, setTotalBill] = useState(0);
-  const [checkout, setCheckout] = useState(false);
 
   const computeTotal = () => {
     const sum = bookedRooms.reduce((acc, room) => {
@@ -47,7 +45,7 @@ const Billing = () => {
       // Restore available rooms in the rooms array
       checkedrooms.forEach((checkedRoom) => {
         const roomIndex = rooms.findIndex(
-          (room) => room.num === checkedRoom.number
+          (room) => room.num === checkedRoom.num
         );
         if (roomIndex !== -1) {
           rooms[roomIndex].available += 1;
@@ -61,7 +59,9 @@ const Billing = () => {
   };
 
   const openModal = () => {
-    const modal = document.getElementById("my_modal_2");
+    const modal = document.getElementById(
+      "my_modal_2"
+    ) as HTMLDialogElement | null;
     if (modal) {
       modal.showModal();
     }
